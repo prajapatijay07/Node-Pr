@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Explorer - Home</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(to bottom right, #d1f0e1, #fce7e1);
+        }
+
+        header {
+            background: #1b5e20;
+            padding: 25px;
+            color: white;
+            text-align: center;
+            letter-spacing: 1px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+        }
+
+        nav a {
+            margin: 0 18px;
+            color: #ffeedd;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #ffcc80;
+        }
+
+        .banner {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .banner h1 {
+            font-size: 48px;
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        .banner p {
+            font-size: 20px;
+            color: #444;
+        }
+
+        .content {
+            width: 75%;
+            margin: 30px auto;
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 14px;
+            line-height: 1.8;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .highlights {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .box {
+            width: 30%;
+            background: #ffffff;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .box h3 {
+            color: #1b5e20;
+        }
+
+        .box p {
+            color: #555;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            padding: 20px;
+            background: #1b5e20;
+            color: white;
+        }
+
+        @media (max-width: 900px) {
+            .box { width: 45%; }
+        }
+
+        @media (max-width: 600px) {
+            .box { width: 100%; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h2>Travel Explorer</h2>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="banner">
+        <h1>Discover the Beauty of the World</h1>
+        <p>Let your journey begin with unforgettable moments.</p>
+    </div>
+
+    <div class="content">
+        <p>
+            Welcome to <strong>Travel Explorer</strong> — your gateway to breathtaking destinations.
+        </p>
+
+        <h2 style="color:#1b5e20; margin-top:30px;">Why Choose Travel Explorer?</h2>
+
+        <ul style="line-height:1.8; font-size:17px;">
+            <li>100+ handpicked travel destinations</li>
+            <li>Custom travel itineraries</li>
+            <li>Best hotel & flight comparison</li>
+            <li>Seasonal guides & hidden gems</li>
+            <li>Expert travel advisors 24/7</li>
+        </ul>
+
+        <div class="highlights">
+            <div class="box">
+                <h3>Global Destinations</h3>
+                <p>Explore countries and cultures worldwide.</p>
+            </div>
+
+            <div class="box">
+                <h3>Budget Travel Tips</h3>
+                <p>Find pocket-friendly packages and advice.</p>
+            </div>
+
+            <div class="box">
+                <h3>24/7 Support</h3>
+                <p>We help you plan your perfect trip.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        2025 Travel Explorer | Designed for Travelers
+    </footer>
+
+</body>
+</html>
