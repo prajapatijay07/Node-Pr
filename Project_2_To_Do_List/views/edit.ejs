@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit To-Do</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #1f4e79, #335c81, #1b3c59);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .header {
+            background: #163b5c;
+            padding: 20px;
+            color: white;
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .box {
+            background: white;
+            width: 430px;
+            margin: auto;
+            margin-top: 40px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+        }
+
+        h2 {
+            text-align: center;
+            color: #163b5c;
+        }
+
+        input, select, textarea, button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 7px;
+            border: 1px solid #cfd6df;
+            font-size: 15px;
+        }
+
+        button {
+            background: #1f4e79;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #163b5c;
+        }
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            padding: 10px;
+            background: #0056b3;
+            color: white;
+            border-radius: 7px;
+            text-decoration: none;
+        }
+        .back-btn:hover {
+            background: #003d80;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="header">TO-DO LIST APP</div>
+
+<div class="box">
+    <h2>Edit To-Do</h2>
+
+    <form action="/updatetask/<%= task.id %>" method="post">
+
+        <input type="text" name="title" value="<%= task.title %>" required>
+
+        <textarea name="description" rows="3"><%= task.description %></textarea>
+
+        <select name="priority">
+            <option <%= task.priority==="High"?"selected":"" %>>High</option>
+            <option <%= task.priority==="Medium"?"selected":"" %>>Medium</option>
+            <option <%= task.priority==="Low"?"selected":"" %>>Low</option>
+        </select>
+
+        <select name="status">
+            <option <%= task.status==="Pending"?"selected":"" %>>Pending</option>
+            <option <%= task.status==="In Progress"?"selected":"" %>>In Progress</option>
+            <option <%= task.status==="Completed"?"selected":"" %>>Completed</option>
+        </select>
+
+        <input type="text" name="assignedTo" value="<%= task.assignedTo %>">
+        <input type="datetime-local" name="deadline" value="<%= task.deadline %>">
+
+        <button type="submit">Update To-Do</button>
+    </form>
+
+    <a href="/" class="back-btn">Back to To-Do List</a>
+</div>
+
+</body>
+</html>

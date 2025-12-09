@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List App</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #1f4e79, #335c81, #1b3c59);
+        }
+
+        .header {
+            background: #163b5c;
+            padding: 20px;
+            color: white;
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            width: 85%;
+            margin: auto;
+            margin-top: 30px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+
+        h2 {
+            color: #1f4e79;
+        }
+
+        .task-form input,
+        .task-form select,
+        .task-form textarea,
+        .task-form button {
+            width: 100%;
+            padding: 12px;
+            margin: 6px 0;
+            border: 1px solid #cfd6df;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        .task-form button {
+            background: #1f4e79;
+            color: white;
+            border: none;
+        }
+
+        .task-form button:hover {
+            background: #163b5c;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+        }
+
+        th {
+            background: #163b5c;
+            color: white;
+            padding: 12px;
+            font-size: 15px;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #d8dfe8;
+            text-align: center;
+        }
+
+        tr:hover {
+            background: #f4f7fb;
+        }
+
+        .edit-btn,
+        .delete-btn {
+            padding: 7px 12px;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .edit-btn {
+            background: #0056b3;
+        }
+        .edit-btn:hover {
+            background: #003d80;
+        }
+
+        .delete-btn {
+            background: #dc3545;
+        }
+        .delete-btn:hover {
+            background: #b02431;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="header">TO-DO LIST APP</div>
+
+<div class="container">
+
+    <h2>Add New To-Do</h2>
+
+    <form action="/addtask" method="post" class="task-form">
+
+        <input type="text" name="id" placeholder="To-Do ID" required>
+        <input type="text" name="title" placeholder="To-Do Title" required>
+        <textarea name="description" rows="3" placeholder="To-Do Description" required></textarea>
+
+        <select name="priority">
+            <option>High</option>
+            <option>Medium</option>
+            <option>Low</option>
+        </select>
+
+        <select name="status">
+            <option>Pending</option>
+            <option>In Progress</option>
+            <option>Completed</option>
+        </select>
+
+        <input type="text" name="assignedTo" placeholder="Assigned To (optional)">
+        <input type="datetime-local" name="deadline" required>
+
+        <button type="submit">Add To-Do</button>
+    </form>
+
+    <h2>To-Do List</h2>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>To-Do</th>
+            <th>Assigned</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Deadline</th>
+            <th>Actions</th>
+        </tr>
+
+        <% tasks.forEach(task => { %>
+        <tr>
+            <td><%= task.id %></td>
+            <td><%= task.title %></td>
+            <td><%= task.assignedTo %></td>
+            <td><%= task.priority %></td>
+            <td><%= task.status %></td>
+            <td><%= new Date(task.deadline).toLocaleString() %></td>
+
+            <td>
+                <a href="/edittask/<%= task.id %>" class="edit-btn">Edit</a>
+                <a href="/deletetask/<%= task.id %>" class="delete-btn" onclick="return confirm('Delete this to-do?')">Delete</a>
+            </td>
+        </tr>
+        <% }) %>
+
+    </table>
+
+</div>
+
+</body>
+</html>
