@@ -1,0 +1,234 @@
+<%- include('../header') %>
+
+<div class="page-wrapper">
+
+    <!-- Breadcrumb -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Edit Product</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/dashboard">Home</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="/Product/view-Product">Products</a>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                Edit Product
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container -->
+    <div class="container-fluid">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+
+                <div class="card">
+                    <form method="POST"
+                          action="/Product/update-Product/<%= product._id %>"
+                          enctype="multipart/form-data"
+                          class="form-horizontal">
+
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">
+                                Product Information
+                            </h4>
+
+                            <!-- Product Name -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Product Name
+                                </label>
+                                <div class="col-sm-9">
+                                    <input type="text"
+                                           name="productName"
+                                           class="form-control"
+                                           value="<%= product.productName %>"
+                                           required>
+                                </div>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Description
+                                </label>
+                                <div class="col-sm-9">
+                                    <textarea name="description"
+                                              class="form-control"
+                                              rows="3"
+                                              required><%= product.description %></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Price -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Price
+                                </label>
+                                <div class="col-sm-9">
+                                    <input type="number"
+                                           name="price"
+                                           class="form-control"
+                                           value="<%= product.price %>"
+                                           required>
+                                </div>
+                            </div>
+
+                            <!-- Gender -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Gender
+                                </label>
+                                <div class="col-sm-9">
+                                    <select name="gender"
+                                            class="form-control"
+                                            required>
+                                        <option value="">Select Gender</option>
+                                        <option value="Men" <%= product.gender === 'Men' ? 'selected' : '' %>>Men</option>
+                                        <option value="Women" <%= product.gender === 'Women' ? 'selected' : '' %>>Women</option>
+                                        <option value="Unisex" <%= product.gender === 'Unisex' ? 'selected' : '' %>>Unisex</option>
+                                        <option value="Kids" <%= product.gender === 'Kids' ? 'selected' : '' %>>Kids</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Category -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Category
+                                </label>
+                                <div class="col-sm-9">
+                                    <select name="categoryId"
+                                            id="categoryDropdown"
+                                            class="form-control"
+                                            required>
+                                        <option value="">Select Category</option>
+                                        <% categories.forEach(cat => { %>
+                                            <option value="<%= cat._id %>"
+                                                <%= cat._id.toString() === product.categoryId?.toString() ? 'selected' : '' %>>
+                                                <%= cat.category %>
+                                            </option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Sub Category -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Sub Category
+                                </label>
+                                <div class="col-sm-9">
+                                    <select name="subCategoryId"
+                                            id="subCategoryDropdown"
+                                            class="form-control"
+                                            required>
+                                        <option value="">Select Sub Category</option>
+                                        <% subCategories.forEach(sub => { %>
+                                            <option value="<%= sub._id %>"
+                                                    data-category-id="<%= sub.category.toString() %>"
+                                                <%= sub._id.toString() === product.subCategoryId?.toString() ? 'selected' : '' %>>
+                                                <%= sub.subCategory %>
+                                            </option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Extra Category -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Extra Category
+                                </label>
+                                <div class="col-sm-9">
+                                    <select name="extraCategoryId"
+                                            class="form-control"
+                                            required>
+                                        <option value="">Select Extra Category</option>
+                                        <% extraCategories.forEach(extra => { %>
+                                            <option value="<%= extra._id %>"
+                                                <%= extra._id.toString() === product.extraCategoryId?.toString() ? 'selected' : '' %>>
+                                                <%= extra.extraCategory %>
+                                            </option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Current Image -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Current Image
+                                </label>
+                                <div class="col-sm-9">
+                                    <% if (product.productImage) { %>
+                                        <img src="<%= product.productImage %>"
+                                             width="100"
+                                             class="rounded shadow">
+                                    <% } else { %>
+                                        <span class="text-muted">No image</span>
+                                    <% } %>
+                                </div>
+                            </div>
+
+                            <!-- Change Image -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Change Image
+                                </label>
+                                <div class="col-sm-9">
+                                    <input type="file"
+                                           name="productImage"
+                                           class="form-control">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="border-top">
+                            <div class="card-body text-right">
+                                <button type="submit" class="btn btn-success">
+                                    Update Product
+                                </button>
+                                <a href="/Product/view-Product" class="btn btn-secondary">
+                                    Cancel
+                                </a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    document.getElementById("categoryDropdown").addEventListener("change", function () {
+        const selectedCategoryId = this.value;
+        const subOptions = document.querySelectorAll("#subCategoryDropdown option");
+
+        subOptions.forEach(option => {
+            if (!option.value) return;
+            option.style.display =
+                option.getAttribute("data-category-id") === selectedCategoryId
+                    ? "block"
+                    : "none";
+        });
+    });
+</script>
+
+<%- include('../footer') %>

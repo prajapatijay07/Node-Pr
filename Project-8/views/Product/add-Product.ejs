@@ -1,0 +1,312 @@
+<%- include('../header') %>
+
+<div class="page-wrapper">
+
+    <!-- Breadcrumb -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Add Product</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/dashboard">Home</a>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                Product
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container -->
+    <div class="container-fluid">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+
+                <div class="card">
+                    <form method="POST"
+                          action="/Product/add-Product"
+                          enctype="multipart/form-data"
+                          class="form-horizontal">
+
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">
+                                Product Information
+                            </h4>
+
+                            <!-- Product Name -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Product Name
+                                </label>
+                                <div class="col-sm-9">
+                                    <input type="text"
+                                           name="productName"
+                                           class="form-control"
+                                           placeholder="Enter product name"
+                                           required>
+                                </div>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Description
+                                </label>
+                                <div class="col-sm-9">
+                                    <textarea name="description"
+                                              class="form-control"
+                                              rows="3"
+                                              placeholder="Enter product description"
+                                              required></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Price -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Price
+                                </label>
+                                <div class="col-sm-9">
+                                    <input type="number"
+                                           name="price"
+                                           class="form-control"
+                                           placeholder="Enter price"
+                                           required>
+                                </div>
+                            </div>
+
+                            <!-- Discount -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Discount (%)
+                                </label>
+                                <div class="col-sm-9">
+                                    <input type="number"
+                                           name="discount"
+                                           class="form-control"
+                                           placeholder="Optional">
+                                </div>
+                            </div>
+
+                            <!-- Sizes -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Sizes
+                                </label>
+                                <div class="col-sm-9">
+                                    <input type="text"
+                                           name="sizes"
+                                           class="form-control"
+                                           placeholder="S, M, L"
+                                           required>
+                                </div>
+                            </div>
+
+                            <!-- Colors -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Colors
+                                </label>
+                                <div class="col-sm-9">
+                                    <input type="text"
+                                           name="colors"
+                                           class="form-control"
+                                           placeholder="Red, Blue"
+                                           required>
+                                </div>
+                            </div>
+
+                            <!-- Material -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Material
+                                </label>
+                                <div class="col-sm-9">
+                                    <input type="text"
+                                           name="material"
+                                           class="form-control"
+                                           placeholder="Optional">
+                                </div>
+                            </div>
+
+                            <!-- Gender -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Gender
+                                </label>
+                                <div class="col-sm-9">
+                                    <select name="gender"
+                                            class="form-control"
+                                            required>
+                                        <option value="">Select Gender</option>
+                                        <option>Men</option>
+                                        <option>Women</option>
+                                        <option>Unisex</option>
+                                        <option>Kids</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Stock -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Stock
+                                </label>
+                                <div class="col-sm-9">
+                                    <input type="number"
+                                           name="stock"
+                                           class="form-control"
+                                           placeholder="Optional">
+                                </div>
+                            </div>
+
+                            <!-- Rating -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Rating
+                                </label>
+                                <div class="col-sm-9">
+                                    <input type="number"
+                                           step="0.1"
+                                           min="0"
+                                           max="5"
+                                           name="rating"
+                                           class="form-control"
+                                           placeholder="0 to 5">
+                                </div>
+                            </div>
+
+                            <!-- Brand -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Brand
+                                </label>
+                                <div class="col-sm-9">
+                                    <input type="text"
+                                           name="brand"
+                                           class="form-control"
+                                           placeholder="Optional">
+                                </div>
+                            </div>
+
+                            <!-- Category -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Category
+                                </label>
+                                <div class="col-sm-9">
+                                    <select name="categoryId"
+                                            id="categoryDropdown"
+                                            class="form-control"
+                                            required>
+                                        <option value="">Select Category</option>
+                                        <% categories.forEach(cat => { %>
+                                            <option value="<%= cat._id %>">
+                                                <%= cat.category %>
+                                            </option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Sub Category -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Sub Category
+                                </label>
+                                <div class="col-sm-9">
+                                    <select name="subCategoryId"
+                                            id="subCategoryDropdown"
+                                            class="form-control"
+                                            required>
+                                        <option value="">Select Sub Category</option>
+                                        <% subCategories.forEach(sub => { %>
+                                            <option value="<%= sub._id %>"
+                                                    data-category-id="<%= sub.category.toString() %>">
+                                                <%= sub.subCategory %>
+                                            </option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Extra Category -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Extra Category
+                                </label>
+                                <div class="col-sm-9">
+                                    <select name="extraCategoryId"
+                                            class="form-control"
+                                            required>
+                                        <option value="">Select Extra Category</option>
+                                        <% extraCategories.forEach(extra => { %>
+                                            <option value="<%= extra._id %>">
+                                                <%= extra.extraCategory %>
+                                            </option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Image -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right col-form-label">
+                                    Product Image
+                                </label>
+                                <div class="col-sm-9">
+                                    <input type="file"
+                                           name="productImage"
+                                           class="form-control"
+                                           required>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="border-top">
+                            <div class="card-body text-right">
+                                <button type="submit" class="btn btn-primary">
+                                    Add Product
+                                </button>
+                                <a href="/Product/view-Product" class="btn btn-secondary">
+                                    Cancel
+                                </a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    document.getElementById("categoryDropdown").addEventListener("change", function () {
+        const selectedCategoryId = this.value;
+        const subOptions = document.querySelectorAll("#subCategoryDropdown option");
+
+        subOptions.forEach(option => {
+            if (!option.value) return;
+            option.style.display =
+                option.getAttribute("data-category-id") === selectedCategoryId
+                    ? "block"
+                    : "none";
+        });
+
+        document.getElementById("subCategoryDropdown").value = "";
+    });
+</script>
+
+<%- include('../footer') %>

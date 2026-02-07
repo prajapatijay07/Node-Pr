@@ -1,0 +1,28 @@
+{
+  "name": "project-8",
+  "version": "1.0.0",
+  "description": "gmail : \"prajapatijay0729@gmail.com\" ,\r password : 12345",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.7",
+    "ejs": "^4.0.1",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "mongoose": "^9.1.6",
+    "multer": "^2.0.2",
+    "nodemailer": "^8.0.0",
+    "nodemon": "^3.1.11",
+    "passport": "^0.7.0",
+    "passport-google-oauth": "^2.0.0",
+    "passport-local": "^1.0.0"
+  }
+}

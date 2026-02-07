@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bag | Myntra</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body{
+  font-family: Assistant, Arial;
+  background:#f5f5f6;
+  color:#282c3f;
+}
+
+/* HEADER */
+header{
+  background:#fff;
+  border-bottom:1px solid #eaeaec;
+  position:sticky;
+  top:0;
+  z-index:999;
+}
+.logo-img{ height:40px; }
+
+.navbar-menu a{
+  font-weight:700;
+  font-size:14px;
+  margin:0 14px;
+  padding:20px 0;
+  text-decoration:none;
+  color:#282c3f;
+}
+.navbar-menu a:hover{
+  border-bottom:3px solid #ff3f6c;
+}
+
+.search-box{ position:relative; }
+.search-box input{
+  width:100%;
+  padding:10px 40px;
+  background:#f5f5f6;
+  border:none;
+  border-radius:4px;
+}
+.search-box i{
+  position:absolute;
+  top:12px;
+  left:14px;
+  color:#94969f;
+}
+
+.nav-icons{
+  display:flex;
+  gap:20px;
+  font-size:12px;
+}
+.nav-icons a{
+  text-decoration:none;
+  color:#282c3f;
+  text-align:center;
+}
+.nav-icons i{
+  display:block;
+  font-size:18px;
+}
+
+/* PAGE */
+.page{
+  max-width:1200px;
+  margin:auto;
+  padding:30px 15px;
+}
+
+/* CART */
+.cart-layout{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:30px;
+}
+
+.cart-card{
+  background:#fff;
+  border-radius:8px;
+  padding:15px;
+  display:flex;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.cart-card img{
+  width:120px;
+  height:160px;
+  object-fit:cover;
+  background:#f5f5f6;
+}
+
+.cart-info{
+  flex:1;
+}
+
+.brand{
+  font-weight:700;
+}
+.title{
+  font-size:14px;
+  color:#535665;
+}
+
+.price{
+  font-weight:700;
+  margin-top:5px;
+}
+.price del{
+  color:#94969f;
+  font-size:12px;
+  margin-left:5px;
+}
+
+.actions{
+  margin-top:10px;
+  font-size:13px;
+}
+.actions a{
+  margin-right:15px;
+  color:#ff3f6c;
+  font-weight:700;
+  text-decoration:none;
+}
+
+/* SUMMARY */
+.summary{
+  background:#fff;
+  border-radius:8px;
+  padding:20px;
+}
+.summary h6{
+  font-weight:700;
+  margin-bottom:15px;
+}
+.summary-row{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+  font-size:14px;
+}
+.summary-total{
+  font-weight:800;
+  font-size:16px;
+}
+.place-btn{
+  width:100%;
+  background:#ff3f6c;
+  border:none;
+  color:#fff;
+  padding:12px;
+  font-weight:700;
+  margin-top:15px;
+}
+
+/* ================= PROFILE DROPDOWN FIX ================= */
+.profile {
+  position: relative;
+}
+
+.profile-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: #fff;
+  width: 200px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .1);
+  padding: 15px;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.2s ease;
+  z-index: 2000;
+}
+
+.profile:hover .profile-menu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+.profile-menu a {
+  display: block;
+  margin: 8px 0;
+  font-size: 14px;
+  color: #282c3f;
+  text-decoration: none;
+}
+
+.login-btn {
+  border: 1px solid #ff3f6c;
+  color: #ff3f6c;
+  text-align: center;
+  padding: 8px;
+  font-weight: 700;
+}
+
+/* IMPORTANT: header overflow fix */
+header {
+  overflow: visible !important;
+}
+
+
+/* EMPTY */
+.empty{
+  background:#fff;
+  padding:50px;
+  text-align:center;
+  border-radius:8px;
+}
+.empty a{
+  background:#ff3f6c;
+  color:#fff;
+  padding:10px 30px;
+  font-weight:700;
+  text-decoration:none;
+}
+
+/* FOOTER */
+    footer {
+      background: #fafbfc;
+      padding: 40px 0;
+      color: #94969f;
+      font-size: 14px;
+      margin-top: 60px;
+    }
+
+@media(max-width:992px){
+  .cart-layout{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="container d-flex align-items-center py-2">
+
+    <a href="/user" class="me-4">
+      <img src="/assets/myntra.jpeg" alt="Myntra" class="logo-img">
+    </a>
+
+    <div class="navbar-menu d-none d-md-flex">
+      <a href="#">MEN</a>
+      <a href="#">WOMEN</a>
+      <a href="#">KIDS</a>
+      <a href="#">HOME</a>
+      <a href="#">BEAUTY</a>
+    </div>
+
+    <form method="get" action="/user" class="search-box flex-grow-1 mx-4">
+      <i class="fa fa-search"></i>
+      <input type="text" name="search" placeholder="Search for products, brands and more">
+    </form>
+
+    <div class="nav-icons">
+      <div class="profile">
+        <a href="#"><i class="fa-regular fa-user"></i>Profile</a>
+
+        <div class="profile-menu">
+          <% if(!userData){ %>
+            <strong>Hello Guest</strong>
+            <a href="/user/loginUser" class="login-btn">LOGIN / SIGNUP</a>
+          <% } else { %>
+            <strong>Hello <%= userData.username %></strong>
+            <a href="/user/view-profile">My Profile</a>
+            <a href="/user/change-password">Change Password</a>
+            <a href="/user/logoutUser">Logout</a>
+          <% } %>
+        </div>
+      </div>
+
+      <a href="/user/favourite" style="position:relative">
+        <i class="fa-regular fa-heart"></i>Wishlist
+        <% if(favCount > 0){ %>
+          <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
+            <%= favCount %>
+          </span>
+        <% } %>
+      </a>
+
+      <a href="/user/cart" style="position:relative">
+        <i class="fa-solid fa-bag-shopping"></i>Bag
+        <% if(cartCount > 0){ %>
+          <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
+            <%= cartCount %>
+          </span>
+        <% } %>
+      </a>
+    </div>
+
+  </div>
+</header>
+
+
+<!-- CONTENT -->
+<div class="page">
+<h4>My Bag</h4>
+
+<% if(cart.length === 0){ %>
+  <div class="empty">
+    <h5>Your bag is empty</h5>
+    <p class="text-muted">Add items from wishlist or home</p>
+    <a href="/user">CONTINUE SHOPPING</a>
+  </div>
+<% } else { %>
+
+<div class="cart-layout">
+
+<!-- LEFT -->
+<div>
+<% let total = 0; %>
+<% cart.forEach(item=>{ total += item.price; %>
+
+  <div class="cart-card">
+    <img src="<%= item.image %>">
+
+    <div class="cart-info">
+      <div class="brand"><%= item.brand || 'Brand' %></div>
+      <div class="title"><%= item.title %></div>
+
+      <div class="price">
+        ₹<%= item.price %>
+        <% if(item.mrp){ %>
+          <del>₹<%= item.mrp %></del>
+        <% } %>
+      </div>
+
+      <div class="actions">
+        <a href="/user/cart/remove/<%= item._id %>">REMOVE</a>
+        <a href="/user/add-favourite/<%= item._id %>">MOVE TO WISHLIST</a>
+      </div>
+    </div>
+  </div>
+
+<% }) %>
+</div>
+
+<!-- RIGHT -->
+<div>
+  <div class="summary">
+    <h6>PRICE DETAILS</h6>
+
+    <div class="summary-row">
+      <span>Total MRP</span>
+      <span>₹<%= total %></span>
+    </div>
+
+    <div class="summary-row">
+      <span>Convenience Fee</span>
+      <span class="text-success">FREE</span>
+    </div>
+
+    <hr>
+
+    <div class="summary-row summary-total">
+      <span>Total Amount</span>
+      <span>₹<%= total %></span>
+    </div>
+
+    <button class="place-btn">PLACE ORDER</button>
+  </div>
+</div>
+
+</div>
+<% } %>
+</div>
+<footer>
+    <div class="container text-center">
+      © <%= new Date().getFullYear() %> Myntra Clone
+    </div>
+  </footer>
+</body>
+</html>

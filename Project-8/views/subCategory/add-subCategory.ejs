@@ -1,0 +1,91 @@
+<%- include('../header') %>
+
+<div class="page-wrapper">
+
+    <!-- Breadcrumb -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Add Sub Category</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/subCategory/view-subCategory">Sub Category</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Add</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container -->
+    <div class="container-fluid">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <h4 class="card-title mb-4 text-center">
+                            Add Sub Category
+                        </h4>
+
+                        <form method="post" action="/subCategory/add-subCategory" enctype="multipart/form-data">
+
+                            <!-- Category Dropdown -->
+                            <div class="form-group">
+                                <label>Category Name</label>
+                                <select class="form-control" name="category" required>
+                                    <option value="">Select Category</option>
+                                    <% categories.forEach(cat => { %>
+                                        <option value="<%= cat._id %>">
+                                            <%= cat.category %>
+                                        </option>
+                                    <% }) %>
+                                </select>
+                            </div>
+
+                            <!-- Sub Category Name -->
+                            <div class="form-group">
+                                <label>Sub Category Name</label>
+                                <input type="text"
+                                       class="form-control"
+                                       name="subCategory"
+                                       placeholder="Enter Sub Category Name"
+                                       required>
+                            </div>
+
+                            <!-- Image Upload -->
+                            <div class="form-group">
+                                <label>Sub Category Image</label>
+                                <input type="file"
+                                       class="form-control"
+                                       name="subCategoryImage"
+                                       required>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-success">
+                                    Add Sub Category
+                                </button>
+                                <a href="/subCategory/view-subCategory" class="btn btn-secondary">
+                                    Cancel
+                                </a>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include('../footer') %>

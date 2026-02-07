@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title><%= product.productName %> | Myntra</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body{
+  font-family:"Assistant",-apple-system,BlinkMacSystemFont,Segoe UI,Roboto;
+  background:#fff;
+  color:#282c3f;
+}
+
+/* ================= HEADER ================= */
+header{
+  background:#fff;
+  border-bottom:1px solid #eaeaec;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.logo-img{ height:40px; }
+
+/* NAV */
+.navbar-menu a{
+  font-weight:700;
+  font-size:14px;
+  margin:0 14px;
+  padding:20px 0;
+  text-decoration:none;
+  color:#282c3f;
+}
+.navbar-menu a:hover{
+  border-bottom:3px solid #ff3f6c;
+}
+
+/* SEARCH */
+.search-box{ position:relative; }
+.search-box input{
+  width:100%;
+  padding:10px 40px;
+  background:#f5f5f6;
+  border:none;
+  border-radius:4px;
+}
+.search-box i{
+  position:absolute;
+  top:12px;
+  left:14px;
+  color:#94969f;
+}
+
+/* ICONS */
+.nav-icons{
+  display:flex;
+  gap:20px;
+  font-size:12px;
+}
+.nav-icons a{
+  text-decoration:none;
+  color:#282c3f;
+  text-align:center;
+}
+.nav-icons i{
+  display:block;
+  font-size:18px;
+}
+/* ================= PROFILE DROPDOWN FIX ================= */
+.profile {
+  position: relative;
+}
+
+.profile-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: #fff;
+  width: 200px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .1);
+  padding: 15px;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.2s ease;
+  z-index: 2000;
+}
+
+.profile:hover .profile-menu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+.profile-menu a {
+  display: block;
+  margin: 8px 0;
+  font-size: 14px;
+  color: #282c3f;
+  text-decoration: none;
+}
+
+.login-btn {
+  border: 1px solid #ff3f6c;
+  color: #ff3f6c;
+  text-align: center;
+  padding: 8px;
+  font-weight: 700;
+}
+
+/* IMPORTANT: header overflow fix */
+header {
+  overflow: visible !important;
+}
+
+/* ================= PRODUCT PAGE ================= */
+.product-page{
+  max-width:1400px;
+  margin:auto;
+  padding:20px;
+}
+
+.breadcrumb-box{
+  font-size:13px;
+  color:#94969f;
+  margin-bottom:20px;
+}
+
+.product-layout{
+  display:grid;
+  grid-template-columns:1.1fr 0.9fr;
+  gap:40px;
+}
+
+/* IMAGES */
+.main-images{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.main-images.single{
+  grid-template-columns:1fr;
+}
+.main-images img{
+  width:100%;
+  height:520px;
+  object-fit:cover;
+  border-radius:6px;
+  background:#f5f5f6;
+}
+
+/* DETAILS */
+.brand{ font-size:24px;font-weight:700; }
+.title{ font-size:18px;color:#535665; }
+
+.rating{
+  display:inline-flex;
+  gap:6px;
+  border:1px solid #eaeaec;
+  padding:6px 10px;
+  margin:12px 0;
+}
+
+.price{ font-size:28px;font-weight:700; }
+.price del{
+  font-size:16px;
+  color:#94969f;
+  margin-left:8px;
+}
+.discount{ color:#ff905a;margin-top:5px; }
+.tax{ color:#03a685;margin:10px 0 20px; }
+
+.size-box span{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  border:1px solid #d4d5d9;
+  margin-right:10px;
+  cursor:pointer;
+  font-weight:700;
+}
+.size-box span:hover{
+  border-color:#ff3f6c;
+  color:#ff3f6c;
+}
+
+/* BUTTONS */
+.actions{
+  display:flex;
+  gap:15px;
+  margin-top:30px;
+}
+.btn-cart{
+  flex:1;
+  background:#ff3f6c;
+  color:#fff;
+  border:none;
+  padding:14px;
+  font-weight:700;
+}
+.btn-wishlist{
+  flex:1;
+  background:#fff;
+  border:1px solid #d4d5d9;
+  padding:14px;
+  font-weight:700;
+}
+
+/* MORE DETAILS */
+.product-details{
+  margin-top:40px;
+  border-top:1px solid #eaeaec;
+  padding-top:30px;
+}
+.detail-title{
+  font-size:16px;
+  font-weight:700;
+  margin-bottom:12px;
+}
+.detail-text{
+  font-size:14px;
+  color:#535665;
+  line-height:1.7;
+}
+.specs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px 40px;
+}
+.specs div{
+  font-size:14px;
+  color:#535665;
+}
+.specs span{
+  display:block;
+  font-size:12px;
+  color:#94969f;
+}
+
+/* FOOTER */
+    footer {
+      background: #fafbfc;
+      padding: 40px 0;
+      color: #94969f;
+      font-size: 14px;
+      margin-top: 60px;
+    }
+
+/* RESPONSIVE */
+@media(max-width:992px){
+  .product-layout{ grid-template-columns:1fr; }
+  .main-images{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<%
+let images=[];
+if(product.productImages?.length){
+  images=product.productImages;
+}else if(product.productImage){
+  images=[product.productImage];
+}
+%>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="container d-flex align-items-center py-2">
+
+    <a href="/user" class="me-4">
+      <img src="/assets/myntra.jpeg" alt="Myntra" class="logo-img">
+    </a>
+
+    <div class="navbar-menu d-none d-md-flex">
+      <a href="#">MEN</a>
+      <a href="#">WOMEN</a>
+      <a href="#">KIDS</a>
+      <a href="#">HOME</a>
+      <a href="#">BEAUTY</a>
+    </div>
+
+    <form method="get" action="/user" class="search-box flex-grow-1 mx-4">
+      <i class="fa fa-search"></i>
+      <input type="text" name="search" placeholder="Search for products, brands and more">
+    </form>
+
+    <div class="nav-icons">
+      <div class="profile">
+        <a href="#"><i class="fa-regular fa-user"></i>Profile</a>
+
+        <div class="profile-menu">
+          <% if(!userData){ %>
+            <strong>Hello Guest</strong>
+            <a href="/user/loginUser" class="login-btn">LOGIN / SIGNUP</a>
+          <% } else { %>
+            <strong>Hello <%= userData.username %></strong>
+            <a href="/user/view-profile">My Profile</a>
+            <a href="/user/change-password">Change Password</a>
+            <a href="/user/logoutUser">Logout</a>
+          <% } %>
+        </div>
+      </div>
+
+      <a href="/user/favourite" style="position:relative">
+        <i class="fa-regular fa-heart"></i>Wishlist
+        <% if(favCount > 0){ %>
+          <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
+            <%= favCount %>
+          </span>
+        <% } %>
+      </a>
+
+      <a href="/user/cart" style="position:relative">
+        <i class="fa-solid fa-bag-shopping"></i>Bag
+        <% if(cartCount > 0){ %>
+          <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
+            <%= cartCount %>
+          </span>
+        <% } %>
+      </a>
+    </div>
+
+  </div>
+</header>
+
+
+<!-- ================= PRODUCT ================= -->
+<div class="product-page">
+
+<div class="breadcrumb-box">
+Home / <%= product.categoryId?.category || 'Category' %> /
+<strong><%= product.productName %></strong>
+</div>
+
+<div class="product-layout">
+
+<!-- IMAGES -->
+<div>
+  <div class="main-images <%= images.length===1?'single':'' %>">
+    <% images.forEach(img=>{ %>
+      <img src="<%= img %>">
+    <% }) %>
+  </div>
+</div>
+
+<!-- DETAILS -->
+<div>
+  <div class="brand"><%= product.brand || 'Brand' %></div>
+  <div class="title"><%= product.productName %></div>
+
+  <div class="rating">⭐ <strong><%= product.rating || 4.3 %></strong> | 11.4k Ratings</div>
+
+  <div class="price">
+    ₹<%= product.price - (product.discount||0) %>
+    <% if(product.discount){ %>
+      <del>₹<%= product.price %></del>
+    <% } %>
+  </div>
+
+  <% if(product.discount){ %>
+    <div class="discount">(Rs. <%= product.discount %> OFF)</div>
+  <% } %>
+
+  <div class="tax">inclusive of all taxes</div>
+
+  <h6 class="fw-bold mt-3">SELECT SIZE</h6>
+  <div class="size-box">
+    <% product.sizes?.forEach(s=>{ %>
+      <span><%= s %></span>
+    <% }) %>
+  </div>
+
+  <div class="actions">
+    <a href="/user/add-cart/<%= product._id %>" class="btn-cart text-center">ADD TO BAG</a>
+    <a href="/user/add-favourite/<%= product._id %>" class="btn-wishlist text-center">
+      <i class="fa-regular fa-heart"></i> WISHLIST
+    </a>
+  </div>
+
+  <!-- MORE DETAILS -->
+  <div class="product-details">
+    <div class="detail-title">PRODUCT DETAILS</div>
+    <p class="detail-text">
+      <%= product.description || 'No description available.' %>
+    </p>
+
+    <div class="detail-title mt-4">SPECIFICATIONS</div>
+    <div class="specs">
+      <div><strong>Category</strong><span><%= product.categoryId?.category || 'N/A' %></span></div>
+      <div><strong>Sub Category</strong><span><%= product.subCategoryId?.subCategory || 'N/A' %></span></div>
+      <div><strong>Extra Category</strong><span><%= product.extraCategoryId?.extraCategory || 'N/A' %></span></div>
+      <div><strong>Brand</strong><span><%= product.brand || 'N/A' %></span></div>
+      <div><strong>Material</strong><span><%= product.material || 'N/A' %></span></div>
+      <div><strong>Fit</strong><span><%= product.fitType || 'Regular' %></span></div>
+      <div><strong>Gender</strong><span><%= product.gender || 'Unisex' %></span></div>
+      <div><strong>Care</strong><span><%= product.care || 'Machine Wash' %></span></div>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+<footer>
+    <div class="container text-center">
+      © <%= new Date().getFullYear() %> Myntra Clone
+    </div>
+  </footer>
+
+</body>
+</html>

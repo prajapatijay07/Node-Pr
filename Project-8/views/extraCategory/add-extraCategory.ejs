@@ -1,0 +1,137 @@
+<%- include('../header') %>
+
+<div class="page-wrapper">
+
+    <!-- Breadcrumb -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Add Extra Category</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                            <li class="breadcrumb-item active">Extra Category</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container -->
+    <div class="container-fluid">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+                <div class="card">
+                    <form method="POST"
+                          action="/extraCategory/add-extraCategory"
+                          enctype="multipart/form-data"
+                          class="form-horizontal">
+
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Extra Category Information</h4>
+
+                            <!-- Category -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right control-label col-form-label">
+                                    Category
+                                </label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="categoryId" id="categoryDropdown" required>
+                                        <option value="">Select Category</option>
+                                        <% categories.forEach(cat => { %>
+                                            <option value="<%= cat._id %>">
+                                                <%= cat.category %>
+                                            </option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Sub Category -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right control-label col-form-label">
+                                    Sub Category
+                                </label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="subCategoryId" id="subCategoryDropdown" required>
+                                        <option value="">Select Sub Category</option>
+                                        <% subCategories.forEach(sub => { %>
+                                            <option value="<%= sub._id %>"
+                                                data-category-id="<%= sub.category.toString() %>">
+                                                <%= sub.subCategory %>
+                                            </option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Extra Category Name -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right control-label col-form-label">
+                                    Extra Category Name
+                                </label>
+                                <div class="col-sm-9">
+                                    <input type="text"
+                                           class="form-control"
+                                           name="extraCategory"
+                                           placeholder="Enter Extra Category Name"
+                                           required>
+                                </div>
+                            </div>
+
+                            <!-- Image Upload -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right control-label col-form-label">
+                                    Image
+                                </label>
+                                <div class="col-sm-9">
+                                    <input type="file"
+                                           class="form-control"
+                                           name="extraCategoryImage">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="border-top">
+                            <div class="card-body text-right">
+                                <button type="submit" class="btn btn-primary">
+                                    Add Extra Category
+                                </button>
+                                <a href="/extraCategory/view-extraCategory" class="btn btn-secondary">
+                                    Cancel
+                                </a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    document.getElementById("categoryDropdown").addEventListener("change", function () {
+        const selectedCategoryId = this.value;
+        const subCategoryOptions = document.querySelectorAll("#subCategoryDropdown option");
+
+        subCategoryOptions.forEach(option => {
+            if (!option.value) return;
+            option.style.display =
+                option.getAttribute("data-category-id") === selectedCategoryId
+                    ? "block"
+                    : "none";
+        });
+
+        document.getElementById("subCategoryDropdown").value = "";
+    });
+</script>
+
+<%- include('../footer') %>

@@ -1,0 +1,102 @@
+<%- include('../header') %>
+
+<div class="page-wrapper">
+
+    <!-- Breadcrumb -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Edit Sub Category</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/subCategory/view-subCategory">Sub Category</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container -->
+    <div class="container-fluid">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <h4 class="card-title mb-4 text-center">
+                            Edit Sub Category
+                        </h4>
+
+                        <form method="post"
+      action="/subCategory/update-subCategory/<%= subCategory._id %>"
+      enctype="multipart/form-data">
+
+  <!-- Category Dropdown -->
+  <div class="form-group">
+    <label>Category Name</label>
+    <select class="form-control" name="category" required>
+      <% categories.forEach(cat => { %>
+        <option value="<%= cat._id %>"
+          <%= cat._id.toString() === subCategory.category.toString() ? 'selected' : '' %>>
+          <%= cat.category %>
+        </option>
+      <% }) %>
+    </select>
+  </div>
+
+  <!-- Sub Category Name -->
+  <div class="form-group">
+    <label>Sub Category Name</label>
+    <input type="text"
+           class="form-control"
+           name="subCategory"
+           value="<%= subCategory.subCategory %>"
+           required>
+  </div>
+
+  <!-- Existing Image -->
+  <div class="form-group">
+    <label>Current Sub Category Image</label><br>
+    <% if (subCategory.subCategoryImage) { %>
+      <img src="<%= subCategory.subCategoryImage %>" height="80" class="rounded mb-2">
+    <% } else { %>
+      <p class="text-muted">No Image</p>
+    <% } %>
+  </div>
+
+  <!-- Change Image -->
+  <div class="form-group">
+    <label>Change Sub Category Image</label>
+    <input type="file" class="form-control" name="subCategoryImage">
+    <small class="text-muted">Leave empty to keep existing image</small>
+  </div>
+
+  <!-- Buttons -->
+  <div class="text-right">
+    <button type="submit" class="btn btn-success">
+      Update Sub Category
+    </button>
+    <a href="/subCategory/view-subCategory" class="btn btn-secondary">
+      Cancel
+    </a>
+  </div>
+
+</form>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include('../footer') %>
